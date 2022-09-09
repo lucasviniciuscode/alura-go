@@ -1,7 +1,6 @@
 package models
 
-import "github.com/alura-site-go/produtos-website/db"
-
+import "github.com/alura-go/alura-site-go/produtos-website/db"
 
 type Produto struct {
 	Id         int

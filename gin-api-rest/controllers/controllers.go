@@ -3,8 +3,8 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/gin-api-rest/database"
-	"github.com/gin-api-rest/models"
+	"github.com/alura-go/gin-api-rest/database"
+	"github.com/alura-go/gin-api-rest/models"
 	"github.com/gin-gonic/gin"
 )
 

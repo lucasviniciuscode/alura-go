@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/api-rest-go/database"
-	"github.com/api-rest-go/models"
-	"github.com/api-rest-go/routes"
+	"github.com/alura-go/api-rest-go/database"
+	"github.com/alura-go/api-rest-go/models"
+	"github.com/alura-go/api-rest-go/routes"
 )
 
 func main() {

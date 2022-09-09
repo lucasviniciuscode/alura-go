@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/gin-api-rest/controllers"
+	"github.com/alura-go/gin-api-rest/controllers"
 	"github.com/gin-gonic/gin"
 )
 

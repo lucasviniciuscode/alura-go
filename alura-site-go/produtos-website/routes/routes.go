@@ -3,7 +3,7 @@ package routes
 import (
 	"net/http"
 
-	"github.com/alura-site-go/produtos-website/controllers"
+	"github.com/alura-go/alura-site-go/produtos-website/controllers"
 )
 
 func LoadRoutes() {

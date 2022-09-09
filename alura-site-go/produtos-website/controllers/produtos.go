@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/alura-site-go/produtos-website/models"
+	"github.com/alura-go/alura-site-go/produtos-website/models"
 )
 
 var temp = template.Must(template.ParseGlob("templates/*.html"))
@@ -27,11 +27,11 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("nome")
 		descricao := r.FormValue("descricao")
 		preco := r.FormValue("preco")
-		quantidade :=r.FormValue("quantidade")
+		quantidade := r.FormValue("quantidade")
 
 		precoParsed, err := strconv.ParseFloat(preco, 64)
 		quantidadeParsed, err := strconv.Atoi(quantidade)
-		if(err != nil) {
+		if err != nil {
 			log.Println("Erro na conversão de dados: ", err)
 		}
 
@@ -47,23 +47,23 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", 301)
 }
 
-func Edit(w http.ResponseWriter, r *http.Request)  {
+func Edit(w http.ResponseWriter, r *http.Request) {
 	idDoProduto := r.URL.Query().Get("id")
 	produto := models.EditProduct(idDoProduto)
 	temp.ExecuteTemplate(w, "Edit", produto)
 }
 
-func Update(w http.ResponseWriter, r *http.Request)  {
+func Update(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		id := r.FormValue("id")
 		nome := r.FormValue("nome")
 		descricao := r.FormValue("descricao")
 		preco := r.FormValue("preco")
-		quantidade :=r.FormValue("quantidade")
+		quantidade := r.FormValue("quantidade")
 
 		precoParsed, err := strconv.ParseFloat(preco, 64)
 		quantidadeParsed, err := strconv.Atoi(quantidade)
-		if(err != nil) {
+		if err != nil {
 			log.Println("Erro na conversão de dados: ", err)
 		}
 

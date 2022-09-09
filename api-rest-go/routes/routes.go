@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/api-rest-go/controllers"
-	"github.com/api-rest-go/middleware"
+	"github.com/alura-go/api-rest-go/controllers"
+	"github.com/alura-go/api-rest-go/middleware"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/api-rest-go/database"
-	"github.com/api-rest-go/models"
+	"github.com/alura-go/api-rest-go/database"
+	"github.com/alura-go/api-rest-go/models"
 	"github.com/gorilla/mux"
 )
 
