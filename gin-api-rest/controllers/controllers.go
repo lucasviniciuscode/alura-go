@@ -17,7 +17,7 @@ func ExibeTodosOsAlunos(c *gin.Context) {
 func Saudacao(c *gin.Context) {
 	nome := c.Params.ByName("nome")
 	c.JSON(200, gin.H{
-		"API diz:": "E ai " + nome + ", tudo beleza?",
+		"API diz": "E ai " + nome + ", tudo beleza?",
 	})
 }
 
@@ -25,6 +25,11 @@ func CriaNovoAluno(c *gin.Context) {
 	var aluno models.Aluno
 	err := c.ShouldBindJSON(&aluno)
 	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error()})
+		return
+	}
+	if err := models.ValidaDadosDeAlunos(&aluno); err != nil{
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error()})
 		return
@@ -65,10 +70,13 @@ func EditaAluno(c *gin.Context) {
 		})
 		return
 	}
-	database.DB.Model(&aluno).UpdateColumns(aluno)
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Aluno atualizado com sucesso",
-	})
+	if err := models.ValidaDadosDeAlunos(&aluno); err != nil{
+		c.JSON(http.StatusBadRequest, gin.H{
+			"erro": err.Error()})
+		return
+	}
+	database.DB.Save(&aluno)
+	c.JSON(http.StatusOK, aluno)
 }
 
 func BuscaParametrosPorCPF(c *gin.Context) {
@@ -83,4 +91,16 @@ func BuscaParametrosPorCPF(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, aluno)
+}
+
+func ExibePaginaIndex(c *gin.Context)  {
+	var alunos []models.Aluno
+	database.DB.Find(&alunos)
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"alunos": alunos,
+	})
+}
+
+func RotaNaoEncontrada(c *gin.Context)  {
+	c.HTML(http.StatusNotFound, "404.html", nil)
 }
